@@ -1,6 +1,6 @@
 [submodule "scripts/packaging"]
 	path = scripts/packaging
-	url = https://github.com/hac4us06/kernel_packaging
+	url = https://github.com/shadowelite-sec/kernel_packaging.git
 [submodule "KernelSU"]
 	path = KernelSU
 	url = https://github.com/tiann/KernelSU

@@ -162,3 +162,4 @@ clang/
 gcc/
 gcc32/
 local.config
+toolchain
