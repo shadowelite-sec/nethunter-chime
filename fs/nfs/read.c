@@ -353,8 +353,7 @@ struct nfs_readdesc {
 	struct nfs_open_context *ctx;
 };
 
-static int
-readpage_async_filler(struct file *data, struct page *page)
+static int readpage_async_filler(void *data, struct page *page)
 {
 	struct nfs_readdesc *desc = (struct nfs_readdesc *)data;
 	struct nfs_page *new;
