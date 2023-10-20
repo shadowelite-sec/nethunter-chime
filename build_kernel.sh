@@ -1,8 +1,19 @@
 #/bin/bash
 set -e
+source "./local.config"
 
 [ ! -e "scripts/packaging/pack.sh" ] && git submodule init && git submodule update
 [ ! -e "toolchain" ] && echo "Make toolchain avaliable at $(pwd)/toolchain" && exit
+
+function tg_sendText() {
+        curl -s "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" \
+                -d "parse_mode=html" \
+                -d text="${1}" \
+                -d chat_id=$CHAT_ID \
+                -d "disable_web_page_preview=true"
+}
+
+tg_sendText "Build started!"
 
 # Patch for 4.14
 sed -i 's/#ifdef CONFIG_KPROBES/#if 0/g' KernelSU/kernel/ksu.c
