@@ -2,6 +2,9 @@ name: Android Kernel Build
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - action
 
 jobs:
   build:
@@ -15,7 +18,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y build-essential git-core libncurses5-dev libssl-dev
-        cd ~
+
         bash <(curl https://gist.githubusercontent.com/roynatech2544/0feeeb35a6d1782b186990ff2a0b3657/raw/a46f5b3901a750c8877d19ac1e63569783b7e237/setup.sh)
 
     - name: Build kernel
