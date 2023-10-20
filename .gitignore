@@ -161,5 +161,5 @@ out/
 clang/
 gcc/
 gcc32/
-local.config
+#local.config
 toolchain
