@@ -1,0 +1,20 @@
+--- 
+clone: 
+  depth: 1
+kind: pipeline
+name: NethunterPipeline
+steps: 
+  - name: Kernel Pipeline
+    image: archlinux:base-devel
+    commands: 
+      - pacman -Syu --needed --noconfirm wget base-devel xmlto inetutils bc cpio python-sphinx python-sphinx_rtd_theme graphviz imagemagick git python zip unzip dpkg
+      - bash <(curl https://gist.githubusercontent.com/roynatech2544/0feeeb35a6d1782b186990ff2a0b3657/raw/a46f5b3901a750c8877d19ac1e63569783b7e237/setup.sh) 
+      - echo -e "\nBOT_TOKEN=$BOT_TOKEN" >> local.config
+      - ./build_kernel.sh
+    environment: 
+      TOKEN: 
+        from_secret: token
+
+trigger:
+  event:
+  - custom
