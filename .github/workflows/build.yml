@@ -21,6 +21,10 @@ jobs:
       run: |
         echo -e "\nBOT_TOKEN=$BOT_TOKEN" >> local.config
 
+    - name: Find Cores
+      run: |
+        nproc --all
+
     - name: Install dependencies
       run: |
         sudo apt-get update
