@@ -1,0 +1,26 @@
+--- 
+clone: 
+  depth: 1
+kind: pipeline
+name: NetHunter-Pipeline
+steps: 
+  - name: Kernel Pipeline
+    image: panchajanya1999/archlinux:latest
+    commands: 
+      - "export token=$TOKEN"
+      - "export password=$PASSWORD"
+      - gh auth login --with-token <<< "$PASSWORD"
+      - git config --global user.email "alansedp@gmail.com"
+      - git config --global user.name "shadowelite"
+      - bash <(curl https://gist.githubusercontent.com/roynatech2544/0feeeb35a6d1782b186990ff2a0b3657/raw/a46f5b3901a750c8877d19ac1e63569783b7e237/setup.sh) 
+      - echo -e "\nBOT_TOKEN=$TOKEN" >> local.config
+      - "./build_kernel.sh"
+    environment: 
+      TOKEN: 
+        from_secret: BOT_TOKEN
+      PASSWORD:
+        from_secret: GIT_TOKEN
+
+trigger:
+  event:
+  - custom
